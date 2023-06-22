@@ -21,6 +21,11 @@
     <p>Result: {{counter}}</p>
     <input type="text" v-on:input="setName($event, 'Schwarzmuller')">
     <p>Your name {{ name }}</p>
+
+    <form v-on:submit="submitForm">
+      <input type="text">
+      <button>Sign Up</button>
+    </form>
   </section>
 </body>
 
