@@ -18,6 +18,7 @@
   <section id="events">
     <button v-on:click="increaseValue(5)">Add</button>
     <button v-on:click.right=reduceValue(3)>Reduce</button>
+    <p v-once>Starting Couner: {{counter}}</p>
     <p>Result: {{counter}}</p>
     <input type="text" v-on:input="setName($event, 'Schwarzmuller')" v-on:keyup.enter="confirmName">
     <p>Your name {{ confirmedName }}</p>
