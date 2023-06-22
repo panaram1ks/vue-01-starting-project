@@ -6,11 +6,11 @@ const app = Vue.createApp(
             };
         },
         methods: {
-            increaseValue() {
-                this.counter++
+            increaseValue(num) {
+                this.counter += num
             },
-            reduceValue(){
-                this.counter--
+            reduceValue(num) {
+                this.counter -= num
             }
         }
     }
