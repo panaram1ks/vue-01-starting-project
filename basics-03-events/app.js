@@ -1,5 +1,14 @@
 const app = Vue.createApp(
     {
+        computed: {
+            fullname() {
+                console.log('Runing again...');
+                if (this.name === '') {
+                    return ''
+                }
+                return this.name + ' ' + 'Schwarzhuller'
+            }
+        },
         data() {
             return {
                 counter: 10,
