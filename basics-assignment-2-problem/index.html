@@ -1,0 +1,31 @@
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/vue@next" defer=""></script>
+    <script src="app.js" defer=""></script>
+    <h1>Events</h1>
+</head>
+
+<body>
+    <section id="mountId">
+
+        <h2>Event Practice</h2>
+
+        <button v-on:click="showAlert">show alert</button>
+        <hr />
+
+        <input type="text" v-on:input="changeInput1">
+        <p>Output1 {{valueInput1}}</p>
+        <hr />
+
+        <input type="text" v-on:keyup.enter="changeInput2">
+        <p>Output2 {{valueInput2}}</p>
+        <hr />
+
+    </section>
+
+
+</body>
+
+</html>
