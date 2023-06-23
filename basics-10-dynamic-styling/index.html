@@ -16,9 +16,10 @@
     <h1>Vue Dynamic Styling</h1>
   </header>
   <section id="styling">
-    <div v-bind:class="boxASelected? 'demo active': 'demo'" v-on:click="boxSelected('A')"></div>
-    <div class="demo" v-on:click="boxSelected('B')"></div>
-    <div class="demo" v-on:click="boxSelected('C')"></div>
+    <div class="demo" v-bind:class="{active:boxASelected}" v-on:click="boxSelected('A')">
+    </div>
+    <div class="demo" :class="{active:boxBSelected}" v-on:click="boxSelected('B')"></div>
+    <div class="demo" :class="{active:boxCSelected}" v-on:click="boxSelected('C')"></div>
   </section>
 </body>
 
