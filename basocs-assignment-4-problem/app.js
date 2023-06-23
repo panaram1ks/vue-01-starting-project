@@ -12,16 +12,12 @@ const app = Vue.createApp({
         }
     },
     computed: {
-        isUser1() {
-            if (this.className === 'user1') {
-                console.log('user1()');
-                return true
-            }
-        },
-        isUser2() {
-            if (this.className === 'user2') {
-                console.log('user2()');
-                return true
+        paragraphStyles() {
+            return {
+                user1: this.className === 'user1',
+                user2: this.className === 'user2',
+                visible: !this.isClicked,
+                hidden: this.isClicked
             }
         },
         bacgroundCol() {
