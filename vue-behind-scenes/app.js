@@ -17,13 +17,15 @@ const app = Vue.createApp({
 
 app.mount("#app");
 
-
 const app2 = Vue.createApp({
-  data(){
+  template: `
+    <p>{{ favoriteMeal }}</p>
+  `,
+  data() {
     return {
-      favoriteMeal: 'Pizza'
-    }
-  }
+      favoriteMeal: "Pizza",
+    };
+  },
 });
 app2.mount("#app2");
 
