@@ -26,12 +26,12 @@ export default {
         },
         emailAddress: String,
         isFavorite: {
-            type: String,
+            type: Boolean,
             required: false,
-            default: '0',
-            validator: function (value) {
-                return value === '1' || value === '0';
-            }
+            default: false,
+            // validator: function (value) {
+            //     return value === '1' || value === '0';
+            // }
         },
     },
     data() {
@@ -54,11 +54,12 @@ export default {
         //     }
         // }
         toggleFavorite() {
-            if (this.friendIsFavorite === '1') {
-                this.friendIsFavorite = '0';
-            } else {
-                this.friendIsFavorite = '1';
-            }
+            // if (this.friendIsFavorite === '1') {
+            //     this.friendIsFavorite = '0';
+            // } else {
+            //     this.friendIsFavorite = '1';
+            // }
+            this.friendIsFavorite = !this.friendIsFavorite;
         }
     },
     computed: {

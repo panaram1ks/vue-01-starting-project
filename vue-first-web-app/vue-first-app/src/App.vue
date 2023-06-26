@@ -5,17 +5,15 @@
         </header>
         <ul>
             <!-- <li v-for="friend in friends">{{ friend }}</li> -->
-            <friend-contact 
-                name="Manuel Lorenz" 
-                phone-number="01234 78992"
-                email-address="manuel@localhost.com"
-                is-favorite="100">
+            <friend-contact v-for="friend in friends" 
+                :key="friend.id" 
+                :name="friend.name" 
+                :phone-number="friend.phone"
+                :email-address="friend.email" 
+                v-bind:is-favorite="true">
             </friend-contact>
-            
-            <friend-contact 
-                name="Julie Jones" 
-                phone-number="0987 65431"
-                email-address="julie@localhost.com">
+
+            <friend-contact name="Julie Jones" phone-number="0987 65431" email-address="julie@localhost.com">
             </friend-contact>
         </ul>
     </section>
@@ -25,7 +23,18 @@
 export default {
     data() {
         return {
-
+            friends: [
+                {
+                    name: 'Rodrigo Gomez',
+                    phone: '1234 5678 9100',
+                    email: 'gomez@localhost.com',
+                },
+                {
+                    name: 'Arnano Raise',
+                    phone: '9876 5678 1122',
+                    email: 'arnano@localhost.com',
+                }
+            ]
         };
     }
 }
