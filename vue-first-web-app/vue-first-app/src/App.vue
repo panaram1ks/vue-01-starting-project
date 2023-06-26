@@ -5,16 +5,13 @@
         </header>
         <ul>
             <!-- <li v-for="friend in friends">{{ friend }}</li> -->
-            <friend-contact v-for="friend in friends" 
-                :key="friend.id" 
-                :name="friend.name" 
-                :phone-number="friend.phone"
-                :email-address="friend.email" 
-                v-bind:is-favorite="true">
+            <friend-contact v-for="friend in friends" :id="friend.id" :key="friend.id" :name="friend.name"
+                :phone-number="friend.phone" :email-address="friend.email" v-bind:is-favorite="friend.isFavorite"
+                @toggle-favorite=toggleFavoriteStatus>
             </friend-contact>
 
-            <friend-contact name="Julie Jones" phone-number="0987 65431" email-address="julie@localhost.com">
-            </friend-contact>
+            <!-- <friend-contact name="Julie Jones" phone-number="0987 65431" email-address="julie@localhost.com">
+            </friend-contact> -->
         </ul>
     </section>
 </template>
@@ -25,17 +22,29 @@ export default {
         return {
             friends: [
                 {
+                    id: 'manuel',
                     name: 'Rodrigo Gomez',
                     phone: '1234 5678 9100',
                     email: 'gomez@localhost.com',
+                    isFavorite: true,
                 },
                 {
+                    id: 'julie',
                     name: 'Arnano Raise',
                     phone: '9876 5678 1122',
                     email: 'arnano@localhost.com',
+                    isFavorite: false,
                 }
-            ]
+            ],
         };
+    },
+    methods: {
+        toggleFavoriteStatus(friendId) {
+            console.log('toggleFavoriteStatus()');
+            alert(friendId)
+            const identifiedFriend = this.friends.find(friend => friend.id === friendId);
+            identifiedFriend.isFavorite = !identifiedFriend.isFavorite;
+        }
     }
 }
 </script>
