@@ -8,7 +8,8 @@
             <friend-contact 
                 name="Manuel Lorenz" 
                 phone-number="01234 78992"
-                email-address="manuel@localhost.com">
+                email-address="manuel@localhost.com"
+                is-favorite="100">
             </friend-contact>
             
             <friend-contact 
