@@ -10,6 +10,7 @@
             <li><strong>Phone:</strong>{{ phoneNumber }}</li>
             <li><strong>Email:</strong>{{ emailAddress }}</li>
         </ul>
+        <button @click="$emit('delete-contact', id)">Delete</button>
     </li>
 </template>
 
@@ -48,7 +49,8 @@ export default {
                 console.warn('Id is missing!');
                 return false
             }
-        }
+        },
+        'delete-contact': () => { }
     },
     data() {
         return {

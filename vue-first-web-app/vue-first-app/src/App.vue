@@ -3,16 +3,18 @@
         <header>
             <h1>My Friends</h1>
         </header>
+        <new-friend @add-contant="addContact"></new-friend>
         <ul>
             <!-- <li v-for="friend in friends">{{ friend }}</li> -->
             <friend-contact v-for="friend in friends" :id="friend.id" :key="friend.id" :name="friend.name"
                 :phone-number="friend.phone" :email-address="friend.email" v-bind:is-favorite="friend.isFavorite"
-                @toggle-favorite=toggleFavoriteStatus>
+                @toggle-favorite="toggleFavoriteStatus"
+                @delete-contact="deleteContact">
             </friend-contact>
 
             <!-- <friend-contact name="Julie Jones" phone-number="0987 65431" email-address="julie@localhost.com">
             </friend-contact> -->
-        </ul>
+        </ul>       
     </section>
 </template>
 
@@ -44,7 +46,24 @@ export default {
             alert(friendId)
             const identifiedFriend = this.friends.find(friend => friend.id === friendId);
             identifiedFriend.isFavorite = !identifiedFriend.isFavorite;
+        },
+        addContact(name, phone, email) {
+            console.log(2 + name + phone + email);
+            const newFriendContact = {
+                id: new Date().toISOString(),
+                name: name,
+                phone: phone,
+                email: email,
+                isFavorite: false,
+            }
+            this.friends.push(newFriendContact);
+        },
+        deleteContact(friendId) { 
+            this.friends = this.friends.filter(fr => fr.id !== friendId);
         }
+        // deleteFriend() {
+        //     this.$emit('delete-contact');
+        // }
     }
 }
 </script>
@@ -84,7 +103,8 @@ header {
     list-style: none;
 }
 
-#app li {
+#app li,
+#app form {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     margin: 1rem auto;
     border-radius: 10px;
@@ -116,5 +136,21 @@ header {
     background-color: #ec3169;
     border-color: #ec3169;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
+}
+
+#app input {
+    font: inherit;
+    padding: 0.15rem;
+}
+
+#app label {
+    font-weight: bold;
+    margin-right: 1rem;
+    width: 7rem;
+    display: inline-block;
+}
+
+#app form div {
+    margin: 1rem 0;
 }
 </style>
