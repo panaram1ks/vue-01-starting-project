@@ -39,6 +39,17 @@ export default {
             // }
         },
     },
+    // emits: ['toggle-favorite'],
+    emits: {
+        'toggle-favorite': function (id) {
+            if (id) {
+                return true
+            } else {
+                console.warn('Id is missing!');
+                return false
+            }
+        }
+    },
     data() {
         return {
             detailsAreVisible: false,
@@ -67,7 +78,7 @@ export default {
             console.log('toggleFavorite()');
             // this.friendIsFavorite = !this.friendIsFavorite;
 
-            this.$emit('toggle-favorite', this.id );
+            this.$emit('toggle-favorite', this.id);
         }
     },
     computed: {
