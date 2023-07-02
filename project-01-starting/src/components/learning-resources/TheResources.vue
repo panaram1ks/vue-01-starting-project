@@ -58,12 +58,22 @@ export default {
       this.storedResources.unshift(newResource);
       this.selectedTab = 'stored-resources';
     },
+    removeResource(resId) {
+      //   this.storedResources = this.storedResources.filter(
+      //     (item) => item.id !== resId
+      //   );
+      const resIndex = this.storedResources.findIndex(
+        (item) => item.id === resId
+      );
+      console.log(this.storedResources.length);
+      this.storedResources.splice(resIndex, 1);
+    },
   },
-
   provide() {
     return {
       resources: this.storedResources,
       addResource: this.addResource,
+      deleteResource: this.removeResource,
     };
   },
   computed: {
