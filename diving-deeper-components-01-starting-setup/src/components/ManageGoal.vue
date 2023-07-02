@@ -3,11 +3,15 @@
     <h2>Manage Goals</h2>
     <input text="text" ref="goal" />
     <button @click="setGoal">Set Goal</button>
-    <error-alert v-if="inputIsInvalid">
-      <h2>Input is invalid</h2>
-      <p>Please enter at least a few characters...</p>
-      <button @click="confirmError">Okey</button>
-    </error-alert>
+
+    <!-- <teleport to="#app"> -->
+    <teleport to="body">
+      <error-alert v-if="inputIsInvalid">
+        <h2>Input is invalid</h2>
+        <p>Please enter at least a few characters...</p>
+        <button @click="confirmError">Okey</button>
+      </error-alert>
+    </teleport>
   </div>
 </template>
 
@@ -30,9 +34,9 @@ export default {
         this.inputIsInvalid = true;
       }
     },
-    confirmError(){
-        this.inputIsInvalid = false;
-    }
+    confirmError() {
+      this.inputIsInvalid = false;
+    },
   },
 };
 </script>
