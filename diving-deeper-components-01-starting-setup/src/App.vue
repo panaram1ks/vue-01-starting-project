@@ -13,12 +13,16 @@
 
 <script>
 import TheHeader from "./components/TheHeader.vue";
+import BadgeList from './components/BadgeList.vue';
+import UserInfo from './components/UserInfo.vue';
 export default {
   // components: {
   //   "the-header": TheHeader,
   // },
   components: {
     TheHeader,
+    UserInfo,
+    BadgeList,
   },
   data() {
     return {
