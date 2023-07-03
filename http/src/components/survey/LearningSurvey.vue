@@ -61,6 +61,7 @@ export default {
       this.chosenRating = null;
     },
   },
+
 };
 </script>
 

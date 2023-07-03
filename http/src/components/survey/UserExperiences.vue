@@ -45,6 +45,9 @@ export default {
           this.results = result
         })
     }
+  },
+  mounted() {
+    this.loadExperiences()
   }
 };
 </script>
