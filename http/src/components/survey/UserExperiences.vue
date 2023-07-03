@@ -35,8 +35,8 @@ export default {
     loadExperiences() {
       this.isLoading = true;
       this.error = null;
-      // fetch('https://vue-http-demo-e2a97-default-rtdb.europe-west1.firebasedatabase.app/surveys.json')
-      fetch('https://vue-http-demo-e2a97-default-rtdb.europe-west1.firebasedatabase.app/surveys')
+      // fetch('https://vue-http-demo-e2a97-default-rtdb.europe-west1.firebasedatabase.app/surveys')
+      fetch('https://vue-http-demo-e2a97-default-rtdb.europe-west1.firebasedatabase.app/surveys.json')
         .then((response) => {
           if (response.ok) {
             return response.json()
