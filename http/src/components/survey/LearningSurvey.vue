@@ -46,8 +46,7 @@ export default {
       }
       this.invalidInput = false;
 
-      const myAddress = 'surveys.json'
-      fetch('https://vue-http-demo-e2a97-default-rtdb.europe-west1.firebasedatabase.app/' + myAddress, {
+      fetch('https://vue-http-demo-e2a97-default-rtdb.europe-west1.firebasedatabase.app/surveys.json', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
