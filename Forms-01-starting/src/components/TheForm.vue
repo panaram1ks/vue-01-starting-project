@@ -99,7 +99,8 @@
       </div>
     </div>
     <div class="form-control">
-      <rating-control></rating-control>
+      <!--   :model-value="" @update:modelValue=""  if we provide this value and emit this event we can use v-model="" !!!     -->
+      <rating-control v-model="rating"></rating-control>
     </div>
 
     <div class="form-control">
@@ -132,6 +133,7 @@ export default {
       how: null,
       confirm: false,
       userNameValidity: 'pending',
+      rating: null,
     };
   },
   methods: {
@@ -146,15 +148,19 @@ export default {
       // console.log('Referrer: ' + this.referrer);
       // this.referrer = 'wom';
 
-      console.log('Checkboxes');
-      console.log(this.interest);
-      console.log('Radiobutton');
-      console.log(this.how);
-      this.interest = null;
-      this.how = null;
+      // console.log('Checkboxes');
+      // console.log(this.interest);
+      // console.log('Radiobutton');
+      // console.log(this.how);
+      // this.interest = null;
+      // this.how = null;
 
-      console.log('Confirm');
-      console.log(this.confirm);
+      // console.log('Confirm');
+      // console.log(this.confirm);
+
+      console.log('Rating');
+      console.log(this.rating);
+      this.rating = null;
     },
     validateInput() {
       if (this.userName === '') {
