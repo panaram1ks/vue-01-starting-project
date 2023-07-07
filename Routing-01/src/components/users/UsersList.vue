@@ -3,7 +3,7 @@
   <ul>
     <user-item
       v-for="user in users"
-      :key="user.id"
+      :key="user.id"      
       :name="user.fullName"
       :role="user.role"
     ></user-item>
