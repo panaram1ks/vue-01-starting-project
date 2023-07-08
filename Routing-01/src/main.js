@@ -11,10 +11,15 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/', redirect: '/teams' }, // first approach
-    { path: '/teams', component: TeamsList }, //  , alias: '/' second approach // our-domain.com/teams => ... loaded!!
+    {
+      path: '/teams',
+      component: TeamsList,
+      children: [
+        { path: ':teamId', component: TeamMembers, props: true }, // /teams/teamId
+      ],
+    }, //  , alias: '/' second approach // our-domain.com/teams => ... loaded!!
     { path: '/users', component: UsersList },
     { path: '/teams/new' }, // if path not dinamic it should go first to avoid conflict paths!!!!!!!!!!
-    { path: '/teams/:teamId', component: TeamMembers, props: true },
     { path: '/:notFound(.*)', component: NotFound },
   ],
   linkActiveClass: 'active',
