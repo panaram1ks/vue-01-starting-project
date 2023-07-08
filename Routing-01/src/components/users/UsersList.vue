@@ -1,5 +1,6 @@
 <template>
   <button @click="confirmInput">Confirm</button>
+  <button @click="saveChanges">SaveChanges</button>
   <ul>
     <user-item
       v-for="user in users"
@@ -14,6 +15,11 @@
 import UserItem from './UserItem.vue';
 
 export default {
+  data() {
+    return {
+      changestSaved: false,
+    };
+  },
   components: {
     UserItem,
   },
@@ -24,11 +30,29 @@ export default {
       alert('confirmInput()');
       this.$router.push('/teams');
     },
+    saveChanges() {
+      this.changestSaved = true;
+    },
   },
   beforeRouteEnter(to, from, next) {
     console.log('UserListComponent beforeRouteEnter(to, from, next)');
     console.log(to, from);
     next();
+  },
+  beforeRouteLeave(to, from, next) {
+    console.log('UserListComponent beforeRouteLeave(to, from, next)');
+    console.log(to, from);
+    if (this.changestSaved) {
+      next();
+    } else {
+      const userWantsToLeave = confirm(
+        'Are you sure? You got unsaved changes!'
+      );
+      next(userWantsToLeave);
+    }
+  },
+  unmounted() {
+    console.log('UsersList unmounted()');
   },
 };
 </script>
