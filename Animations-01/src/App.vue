@@ -8,6 +8,12 @@
       name="para"
       enter-to-class="some-class"
       enter-active-class="some-class"
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter"
+      @before-leave="beforeLeave"
+      @leave="leave"
+      @after-leave="afterLeave"
     >
       <p v-if="paraIsVisible">This is only sometimes visible...</p>
     </transition>
@@ -41,6 +47,29 @@ export default {
     };
   },
   methods: {
+    beforeEnter(el) {
+      console.log('beforeEnter()');
+      console.log(el);
+    },
+    enter() {
+      console.log('enter()');
+    },
+    afterEnter(el) {
+      console.log('afterEnter()');
+      console.log(el);
+    },
+    beforeLeave(el) {
+      console.log('beforeLeave()');
+      console.log(el);
+    },
+    leave(el) {
+      console.log('leave(el)');
+      console.log(el);
+    },
+    afterLeave(el) {
+      console.log('afterLeave(el)');
+      console.log(el);
+    },
     animateBlock() {
       this.animatedBlock = true;
     },
@@ -131,7 +160,7 @@ button:active {
 } */
 .para-enter-active {
   /* transition: all 0.3s ease-out; */
-  animation: slide-scale 0.3s ease-in;
+  animation: slide-scale 2s ease-in;
 }
 /* end state */
 /* .v-enter-to {
