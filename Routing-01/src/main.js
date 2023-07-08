@@ -5,14 +5,17 @@ import App from './App.vue';
 import TeamsList from './components/teams/TeamsList.vue';
 import UsersList from './components/users/UsersList.vue';
 import TeamMembers from './components/teams/TeamMembers.vue';
+import NotFound from './components/nav/NotFound.vue';
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/teams', component: TeamsList }, // our-domain.com/teams => ... loaded!!
+    { path: '/', redirect: '/teams' }, // first approach
+    { path: '/teams', component: TeamsList }, //  , alias: '/' second approach // our-domain.com/teams => ... loaded!!
     { path: '/users', component: UsersList },
     { path: '/teams/new' }, // if path not dinamic it should go first to avoid conflict paths!!!!!!!!!!
     { path: '/teams/:teamId', component: TeamMembers, props: true },
+    { path: '/:notFound(.*)', component: NotFound },
   ],
   linkActiveClass: 'active',
 });
