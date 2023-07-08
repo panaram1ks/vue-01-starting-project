@@ -14,6 +14,8 @@
       @before-leave="beforeLeave"
       @leave="leave"
       @after-leave="afterLeave"
+      @enter-candelled="enterCancelled"
+      @leave-cancelled="leaveCancelled"
     >
       <p v-if="paraIsVisible">This is only sometimes visible...</p>
     </transition>
@@ -44,9 +46,19 @@ export default {
       dialogIsVisible: false,
       paraIsVisible: false,
       usersAreVisible: false,
+      enterInterval: null,
+      leaveInterval: null,
     };
   },
   methods: {
+    enterCancelled(el) {
+      console.log(el);
+      clearInterval(this.enterInterval);
+    },
+    leaveCancelled(el) {
+      console.log(el);
+      clearInterval(this.leaveInterval);
+    },
     beforeEnter(el) {
       console.log('beforeEnter()');
       console.log(el);
@@ -55,11 +67,11 @@ export default {
     enter(el, done) {
       console.log('enter()');
       let round = 1;
-      const interval = setInterval(() => {
+      this.enterInterval = setInterval(() => {
         el.style.opacity = round * 0.01;
         round++;
         if (round > 100) {
-          clearInterval(interval);
+          clearInterval(this.enterInterval);
           done();
         }
       }, 20);
@@ -71,10 +83,20 @@ export default {
     beforeLeave(el) {
       console.log('beforeLeave()');
       console.log(el);
+      el.style.opacity = 1;
     },
-    leave(el) {
+    leave(el, done) {
       console.log('leave(el)');
       console.log(el);
+      let round = 1;
+      this.leaveInterval = setInterval(() => {
+        el.style.opacity = 1 - round * 0.01;
+        round++;
+        if (round > 100) {
+          clearInterval(this.leaveInterval);
+          done();
+        }
+      }, 20);
     },
     afterLeave(el) {
       console.log('afterLeave(el)');
