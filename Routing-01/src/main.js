@@ -29,6 +29,11 @@ const router = createRouter({
     {
       path: '/users',
       components: { default: UsersList, footer: UsersFooter },
+      beforeEnter(to, from, next) {
+        console.log('Users before enter');
+        console.log(to, from);
+        next();
+      },
     },
     { path: '/teams/new' }, // if path not dinamic it should go first to avoid conflict paths!!!!!!!!!!
     { path: '/:notFound(.*)', component: NotFound },

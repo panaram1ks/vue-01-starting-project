@@ -3,7 +3,7 @@
   <ul>
     <user-item
       v-for="user in users"
-      :key="user.id"      
+      :key="user.id"
       :name="user.fullName"
       :role="user.role"
     ></user-item>
@@ -24,6 +24,11 @@ export default {
       alert('confirmInput()');
       this.$router.push('/teams');
     },
+  },
+  beforeRouteEnter(to, from, next) {
+    console.log('UserListComponent beforeRouteEnter(to, from, next)');
+    console.log(to, from);
+    next();
   },
 };
 </script>
