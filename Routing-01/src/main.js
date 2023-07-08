@@ -12,7 +12,7 @@ const router = createRouter({
     { path: '/teams', component: TeamsList }, // our-domain.com/teams => ... loaded!!
     { path: '/users', component: UsersList },
     { path: '/teams/new' }, // if path not dinamic it should go first to avoid conflict paths!!!!!!!!!!
-    { path: '/teams/:teamId', component: TeamMembers },
+    { path: '/teams/:teamId', component: TeamMembers, props: true },
   ],
   linkActiveClass: 'active',
 });
