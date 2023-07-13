@@ -29,7 +29,7 @@ export default {
   methods: {
     addOne() {
       // this.$store.commit('increase', { value: 10 }); // commit accept name of mutaion
-      this.$store.commit({
+      this.$store.dispatch({
         type: 'increase',
         value: 10,
       })
