@@ -1,5 +1,5 @@
 <template>
-  <base-container title="Vuex">
+  <base-container title="Vuex" v-if="userIsAuthenticated">
     <h3>{{ counter }}</h3>
     <the-counter></the-counter>
     <change-counter></change-counter>
@@ -18,6 +18,8 @@ import ChangeCounter from './components/ChangeCounter.vue';
 import FavoriteValue from './components/FavoriteValue.vue';
 import UserAuth from './components/UserAuth.vue';
 
+import { mapGetters } from 'vuex'
+
 export default {
   components: {
     BaseContainer,
@@ -29,7 +31,8 @@ export default {
   computed: {
     counter() {
       return this.$store.state.counter
-    }
+    },
+    ...mapGetters(['userIsAuthenticated']),
   },
   methods: {
     addOne() {
