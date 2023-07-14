@@ -38,7 +38,7 @@ export default {
     addOne() {
       // this.$store.commit('increase', { value: 10 }); // commit accept name of mutaion
       this.$store.dispatch({
-        type: 'increase',
+        type: 'myModulName/increase',
         value: 10,
       })
     }

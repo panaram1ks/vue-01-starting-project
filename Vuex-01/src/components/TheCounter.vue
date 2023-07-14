@@ -11,7 +11,11 @@ export default {
     //     counter() {
     //         return this.$store.getters.finalCounter          
     //     }
+    // ...mapGetters(['finalCounter']) // invoke getter from store
     // }
-    ...mapGetters(['finalCounter']) // invoke getter from store
+
+    computed: {
+        ...mapGetters('myModulName', ['finalCounter']) // invoke getter from store
+    }
 }
 </script>
