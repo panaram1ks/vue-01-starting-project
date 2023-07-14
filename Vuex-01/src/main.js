@@ -7,6 +7,7 @@ const store = createStore({
     state() {
         return {
             counter: 0,
+            isLogin: false,
         };
     },
     mutations: {
@@ -18,6 +19,12 @@ const store = createStore({
         increase(state, payload) {
             state.counter = state.counter + payload.value
         },
+        mutationCheckIn(state) {
+            state.isLogin = true;
+        },
+        mutationCheckOut(state) {
+            state.isLogin = false;
+        }
     },
     actions: {
         increment(context) {
@@ -29,6 +36,12 @@ const store = createStore({
             console.log(context);
             context.commit('increase', payload)
         },
+        actionCheckIn(context) {
+            context.commit('mutationCheckIn')
+        },
+        actionCheckOut(context) {
+            context.commit('mutationCheckOut')
+        }
     },
     getters: {
         finalCounter(state) {
@@ -43,6 +56,9 @@ const store = createStore({
                 return 100;
             }
             return finalCounter;
+        },
+        getIsLogin(state) {
+            return state.isLogin;
         }
     }
 });
