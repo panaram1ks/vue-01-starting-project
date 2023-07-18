@@ -5,7 +5,8 @@ import router from './router.js';
 
 const application = createApp(app)
 
-application.use(router)
+application.use(router);
+
 application.mount('#app');
 
 
