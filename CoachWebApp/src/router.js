@@ -9,7 +9,7 @@ import NotFound from './pages/NotFound.vue';
 const router = createRouter({
     history: createWebHashHistory(),
     routes: [
-        { path: '/', redirect: 'coaches' },
+       
         { path: '/coaches', component: CoachesList },
         {
             path: '/coaches/:id', component: CoachDetail, children: [
@@ -18,6 +18,7 @@ const router = createRouter({
         },
         { path: '/register', component: CoachRegistration },
         { path: '/requests', component: RequestsReceived },
+        { path: '/', redirect: 'coaches' },
         { path: '/:notFound(.*)', component: NotFound },
     ],
 });

@@ -3,7 +3,7 @@ import app from './App.vue';
 import router from './router.js';
 
 
-const application = createApp(app)
+const application = createApp(app);
 
 application.use(router);
 
