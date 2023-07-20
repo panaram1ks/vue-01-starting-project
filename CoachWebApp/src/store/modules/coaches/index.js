@@ -5,6 +5,7 @@ import getters from './getters.js';
 export default {
     state() {
         return {
+            // userIsCoach: false,
             coaches: [
                 {
                   id: 'c1',

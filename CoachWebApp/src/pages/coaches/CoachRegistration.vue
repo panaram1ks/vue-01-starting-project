@@ -20,7 +20,7 @@ export default {
             // this.$router.push('/coaches')
             this.$router.replace('/coaches') // after replace we can't back on previous page!!!
         }
-    }
+    },
 }
 </script>
 
