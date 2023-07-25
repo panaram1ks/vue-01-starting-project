@@ -25,10 +25,9 @@ const ContactCoach = defineAsyncComponent(() =>
 const RequestsReceived = defineAsyncComponent(() =>
   import('./pages/requests/RequestsReceived.vue')
 );
-const NotFound = defineAsyncComponent(() => import('./pages/NotFound.vue'));
-const UserAuth = defineAsyncComponent(() =>
-  import('./pages/auth/UserAuth.vue')
-);
+// Better syntax for dinamic import
+const NotFound = () => import('./pages/NotFound.vue');
+const UserAuth = () => import('./pages/auth/UserAuth.vue');
 
 const router = createRouter({
   history: createWebHistory(),
