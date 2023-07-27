@@ -2,8 +2,10 @@
   <section class="container">
     <h2>{{ userName }}</h2>
     <div>
-      <input type="text" placeholder="First Name" @input="setFirstName">
-      <input type="text" placeholder="Last Name" @input="setLastName">
+      <input type="text" placeholder="First Name" v-model="firstName">
+      <!-- <input type="text" placeholder="First Name" @input="setFirstName"> -->
+      <input type="text" placeholder="Last Name" v-model="lastName">
+      <!-- <input type="text" placeholder="Last Name" @input="setLastName"> -->
     </div>
   </section>
 </template>
@@ -16,13 +18,13 @@ export default {
     const firstName = ref('')
     const lastName = ref('')
 
-    function setFirstName(event) {
-      firstName.value = event.target.value
-    }
+    // function setFirstName(event) {
+    //   firstName.value = event.target.value
+    // }
 
-    function setLastName(event) {
-      lastName.value = event.target.value
-    }
+    // function setLastName(event) {
+    //   lastName.value = event.target.value
+    // }
 
     const fullName = computed(function () {
       return firstName.value + ' ' + lastName.value
@@ -30,8 +32,10 @@ export default {
 
     return {
       userName: fullName,
-      setFirstName,
-      setLastName,
+      // setFirstName,
+      // setLastName,
+      firstName,
+      lastName,
     }
   }
 }
