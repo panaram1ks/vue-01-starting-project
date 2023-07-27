@@ -2,21 +2,26 @@
   <section class="container">
     <h2>{{ user.name }}</h2>
     <h2>{{ user.age }}</h2>
+    <h2>{{ userAge }}</h2>
   </section>
 </template>
 
 <script>
-import { reactive } from 'vue';
+import { ref, reactive, isReactive, isRef } from 'vue';
 
 export default {
   setup() {
     //reactive only works with Object, you must send Object in it
+    const uAge = ref(55)
+
     const user = reactive({
       name: 'Evgen',
       age: 31
     });
 
-    console.log(user);
+    console.log(uAge, user);
+    console.log(isRef(uAge.value));
+    console.log(isReactive(user.name));
 
     setTimeout(function () {
       user.name = 'TraDAta'
@@ -24,7 +29,8 @@ export default {
     }, 2000)
 
     return {
-      user: user
+      user: user,
+      userAge: uAge.value
     }
   }
 }
