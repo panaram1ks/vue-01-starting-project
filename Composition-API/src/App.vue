@@ -1,29 +1,37 @@
 <template>
   <section class="container">
+    <h2>{{ userName }}</h2>
+    <h3>{{ userAge }}</h3>
     <h2>{{ user.name }}</h2>
-    <h3>{{ user.age }}</h3>
+    <h2>{{ user.age }}</h2>
   </section>
 </template>
 
-<script setup>
+<script>
 import { ref } from 'vue';
 
-// const userName = ref('Evgen');
-// const age = ref(31)
+export default {
+  setup() {
+    const user = ref({
+      name: 'Evgen',
+      age: 31
+    });
 
-const user = ref({
-  name: 'Evgen',
-  age: 31
-});
+    setTimeout(function () {
+      user.value.name = 'TraDAta'
+      user.value.age = 43
 
-setTimeout(function () {
-  // userName.value = 'Tra-ta-ta'
-  // age.value = 42
+    }, 2000)
 
-  user.value.name = 'TraDAta'
-  user.value.age = 43
+    return {
+      userName: user.value.name,
+      userAge: user.value.age,
+      //does not renew values on the screan!!!
+      user: user // this work and renew values on the screan
+    }
+  }
+}
 
-}, 2000)
 </script>
 
 
