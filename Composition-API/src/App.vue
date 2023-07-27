@@ -1,33 +1,30 @@
 <template>
   <section class="container">
-    <h2>{{ userName }}</h2>
-    <h3>{{ userAge }}</h3>
     <h2>{{ user.name }}</h2>
     <h2>{{ user.age }}</h2>
   </section>
 </template>
 
 <script>
-import { ref } from 'vue';
+import { reactive } from 'vue';
 
 export default {
   setup() {
-    const user = ref({
+    //reactive only works with Object, you must send Object in it
+    const user = reactive({
       name: 'Evgen',
       age: 31
     });
 
-    setTimeout(function () {
-      user.value.name = 'TraDAta'
-      user.value.age = 43
+    console.log(user);
 
+    setTimeout(function () {
+      user.name = 'TraDAta'
+      user.age = 43
     }, 2000)
 
     return {
-      userName: user.value.name,
-      userAge: user.value.age,
-      //does not renew values on the screan!!!
-      user: user // this work and renew values on the screan
+      user: user
     }
   }
 }
