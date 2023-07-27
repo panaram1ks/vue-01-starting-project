@@ -4,8 +4,9 @@
     <div>
       <input type="text" placeholder="First Name" v-model="firstName">
       <!-- <input type="text" placeholder="First Name" @input="setFirstName"> -->
-      <input type="text" placeholder="Last Name" v-model="lastName">
+      <input type="text" placeholder="Last Name" ref="lastNameInput">
       <!-- <input type="text" placeholder="Last Name" @input="setLastName"> -->
+      <button @click="setLastName">Set Name</button>
     </div>
   </section>
 </template>
@@ -17,6 +18,8 @@ export default {
   setup() {
     const firstName = ref('')
     const lastName = ref('')
+
+    const lastNameInput = ref(null)
 
     // function setFirstName(event) {
     //   firstName.value = event.target.value
@@ -35,17 +38,24 @@ export default {
       console.log('new value: ' + newValue);
     })
 
-    watch([firstName, lastName], function(newValues, oldValues){
+    watch([firstName, lastName], function (newValues, oldValues) {
       console.log('old value: ' + oldValues);
       console.log('new value: ' + newValues);
     })
+
+    function setLastName() {
+      // lastName.value = this.$refs.lastNameInput.value
+      lastName.value = lastNameInput.value.value
+    }
 
     return {
       userName: fullName,
       // setFirstName,
       // setLastName,
       firstName,
-      lastName,
+      // lastName,
+      setLastName,
+      lastNameInput,
     }
   }
 }
