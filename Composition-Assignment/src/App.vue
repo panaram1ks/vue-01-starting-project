@@ -1,10 +1,10 @@
 <template>
-  <h2 v-if="show">{{ goals }}</h2>
+  <h2 v-if="co.isShow">{{ co.goals }}</h2>
   <!-- Task 1: Output your main course goal with help of the composition API -->
   <!-- Don't hardcode it into the template, instead hardcode it into the JS code -->
   <h3>OUTPUT COURSE GOAL</h3>
   <!-- Task 2: Toggle (show/ hide) the goal with help of the button  -->
-  <button @click="toggleButton">{{ title }}</button>
+  <button @click="co.toggleFunc">{{ co.title }}</button>
   <!-- Task 3: Manage data in three ways -->
   <!-- => Separate refs -->
   <!-- => Ref Object -->
@@ -13,31 +13,32 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { reactive } from 'vue';
 
 export default {
   setup() {
-    const goals = ref('My Course Goal 1')
-    const isShow = ref(true)
-    const title = ref('Hide')
+
+    const condition = reactive({
+      goals: 'My Course Goal 1',
+      isShow: true,
+      title: 'Hide',
+      toggleFunc: () => toggleHideShow()
+    })
 
     const toggleHideShow = function () {
-      let acc = isShow.value
-      isShow.value = !acc
-      console.log(isShow.value);
+      let acc = condition.isShow
+      condition.isShow = !acc
+      console.log(condition.isShow);
       toggleTitle()
     }
 
     const toggleTitle = function () {
-      title.value = isShow.value ? 'Hide' : 'Show'
+      condition.title = condition.isShow ? 'Hide' : 'Show'
     }
 
 
     return {
-      goals: goals.value,
-      toggleButton: toggleHideShow,
-      show: isShow,
-      title: title
+      co: condition
     }
   }
 }
