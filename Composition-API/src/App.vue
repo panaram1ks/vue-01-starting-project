@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 
 export default {
   setup() {
@@ -28,6 +28,16 @@ export default {
 
     const fullName = computed(function () {
       return firstName.value + ' ' + lastName.value
+    })
+
+    watch(firstName, function (newValue, oldValue) {
+      console.log('old value: ' + oldValue);
+      console.log('new value: ' + newValue);
+    })
+
+    watch([firstName, lastName], function(newValues, oldValues){
+      console.log('old value: ' + oldValues);
+      console.log('new value: ' + newValues);
     })
 
     return {
