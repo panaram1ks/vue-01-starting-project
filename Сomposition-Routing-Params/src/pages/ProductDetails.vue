@@ -9,16 +9,21 @@
 
 <script>
 import { inject, computed } from 'vue';
+import { useRoute } from 'vue-router';
 
 export default {
   props: ['pid'],
-  setup(props) {
+  setup() {
 
     // we need get route papameter like :id from router
     // but we can not user this.$route
     const products = inject('products')
 
-    const selectedProduct = computed(() => products.value.find(product => product.id === props.pid))
+    const route = useRoute();
+    console.log(route);
+
+    // const selectedProduct = computed(() => products.value.find(product => product.id === props.pid))
+    const selectedProduct = computed(() => products.value.find(product => product.id === route.params.pid))
 
     console.log(selectedProduct.value);
 
