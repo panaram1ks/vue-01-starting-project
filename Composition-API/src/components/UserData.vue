@@ -4,7 +4,19 @@
 </template>
 
 <script>
-import { computed, inject } from 'vue';
+import {
+    computed,
+    inject,
+    onBeforeMount,
+    onMounted,
+    onBeforeUpdate,
+    onUpdated,
+    onBeforeUnmount,
+    onUnmounted
+} from 'vue';
+
+// HOOKS onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted
+// beforeCreate, create NOT NEEDED setup() replaces these hooks! 
 
 export default {
     // inject: [], // we do not use inject like this
@@ -20,6 +32,13 @@ export default {
         console.log(context);
         // we can emit custom event
         // context.emit('save-data', 1); // this.$emit('customName', dataYouWantToEmit)
+
+        onBeforeMount(function () { console.log('onBeforeMount'); })
+        onMounted(function () { console.log('onMounted'); })
+        onBeforeUpdate(function () { console.log('onBeforeUpdate'); })
+        onUpdated(function () { console.log('onUpdated'); })
+        onBeforeUnmount(function () { console.log('onBeforeUnmount'); })
+        onUnmounted(function () { console.log(' onUnmounted'); })
 
         return {
             userName: uName,
