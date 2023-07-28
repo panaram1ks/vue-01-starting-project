@@ -1,12 +1,33 @@
+import { defineAsyncComponent } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
-import CoachDetail from './pages/coaches/CoachDetail.vue';
+// Static import
+// import CoachDetail from './pages/coaches/CoachDetail.vue';
 import CoachesList from './pages/coaches/CoachesList.vue';
-import CoachRegistation from './pages/coaches/CoachRegistration.vue';
-import ContactCoach from './pages/requests/ContactCoach.vue';
-import RequestsReceived from './pages/requests/RequestsReceived.vue';
-import NotFound from './pages/NotFound.vue';
-import UserAuth from './pages/auth/UserAuth.vue';
+// import CoachRegistation from './pages/coaches/CoachRegistration.vue';
+// import ContactCoach from './pages/requests/ContactCoach.vue';
+// import RequestsReceived from './pages/requests/RequestsReceived.vue';
+// import NotFound from './pages/NotFound.vue';
+// import UserAuth from './pages/auth/UserAuth.vue';
+
+import store from './store/index.js';
+
+// Dinamic import
+const CoachDetail = defineAsyncComponent(() =>
+  import('./pages/coaches/CoachDetail.vue')
+);
+const CoachRegistation = defineAsyncComponent(() =>
+  import('./pages/coaches/CoachRegistration.vue')
+);
+const ContactCoach = defineAsyncComponent(() =>
+  import('./pages/requests/ContactCoach.vue')
+);
+const RequestsReceived = defineAsyncComponent(() =>
+  import('./pages/requests/RequestsReceived.vue')
+);
+// Better syntax for dinamic import
+const NotFound = () => import('./pages/NotFound.vue');
+const UserAuth = () => import('./pages/auth/UserAuth.vue');
 
 const router = createRouter({
   history: createWebHistory(),
@@ -21,11 +42,31 @@ const router = createRouter({
         { path: 'contact', component: ContactCoach }, // /coaches/c1/contact
       ],
     },
-    { path: '/register', component: CoachRegistation },
-    { path: '/requests', component: RequestsReceived },
-    { path: '/auth', component: UserAuth },
+    {
+      path: '/register',
+      component: CoachRegistation,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/requests',
+      component: RequestsReceived,
+      meta: { requiresAuth: true },
+    },
+    { path: '/auth', component: UserAuth, meta: { requiresUnauth: true } },
     { path: '/:notFound(.*)', component: NotFound },
   ],
+});
+
+// Navigation Guards
+router.beforeEach(function (to, from, next) {
+  if (to.meta.requiresAuth && !store.getters.isAuthenticated) {
+    // next(false);// OR
+    next('/auth');
+  } else if (to.meta.requiresUnauth && store.getters.isAuthenticated) {
+    next('/coaches');
+  } else {
+    next();
+  }
 });
 
 export default router;
