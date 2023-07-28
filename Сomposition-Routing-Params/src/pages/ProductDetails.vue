@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { inject } from 'vue';
+import { inject, computed } from 'vue';
 
 export default {
   props: ['pid'],
@@ -18,11 +18,13 @@ export default {
     // but we can not user this.$route
     const products = inject('products')
 
-    const selectedProduct = products.value.find(product => product.id === props.pid)
-    console.log(selectedProduct);
-    const title = selectedProduct.title
-    const price = selectedProduct.price
-    const description = selectedProduct.description
+    const selectedProduct = computed(() => products.value.find(product => product.id === props.pid))
+
+    console.log(selectedProduct.value);
+
+    const title = computed(() => selectedProduct.value.title)
+    const price = computed(() => selectedProduct.value.price)
+    const description = computed(() => selectedProduct.value.description)
 
     return { title, price, description };
   },
