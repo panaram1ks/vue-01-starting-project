@@ -33,11 +33,12 @@ export default {
     const { enteredSearchTerm, availableItems, updateSearch } = useSearch(projects, 'title');
 
     const hasProjects = computed(function () {
-      return props.user.projects && availableItems.value.length > 0;
+      return user.value.projects && availableItems.value.length > 0;
     });
 
     watch(user, function () {
-      enteredSearchTerm.value = '';
+      // enteredSearchTerm.value = ''; // change value here but not inside hook is bad idea !
+      updateSearch('');
     });
 
     return {
